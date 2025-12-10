@@ -9,13 +9,93 @@ import SwiftUI
 import Combine
 
 struct RapWheelScreen: View {
-    @StateObject private var vm = RapWheelViewModel(
-        segments: [
-            "person1", "person2", "person3", "person4",
-            "person5", "person6", "person7", "person8",
-            "person9", "person10", "person11", "person12"
-        ],
-        baseOffsetDegrees: 0   // tweak later if slice not exactly under pointer
+    @StateObject private var vm = WheelViewModel(
+        items: [
+            WheelItem(
+                text: "Person 1",
+                backgroundColors: [.red, .orange],
+                textColors: [.white],
+                iconName: "person1",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 2",
+                backgroundColors: [.blue, .purple],
+                textColors: [.white],
+                iconName: "person2",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 3",
+                backgroundColors: [.green, .mint],
+                textColors: [.white],
+                iconName: "person3",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 4",
+                backgroundColors: [.pink, .red],
+                textColors: [.white],
+                iconName: "person4",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 5",
+                backgroundColors: [.indigo, .blue],
+                textColors: [.white],
+                iconName: "person5",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 6",
+                backgroundColors: [.orange, .yellow],
+                textColors: [.white],
+                iconName: "person6",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 7",
+                backgroundColors: [.purple, .pink],
+                textColors: [.white],
+                iconName: "person7",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 8",
+                backgroundColors: [.teal, .green],
+                textColors: [.white],
+                iconName: "person8",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 9",
+                backgroundColors: [.brown, .orange],
+                textColors: [.white],
+                iconName: "person9",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 10",
+                backgroundColors: [.cyan, .blue],
+                textColors: [.white],
+                iconName: "person10",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 11",
+                backgroundColors: [.yellow, .orange],
+                textColors: [.white],
+                iconName: "person11",
+                font: .system(size: 14, weight: .bold)
+            ),
+            WheelItem(
+                text: "Person 12",
+                backgroundColors: [.gray, .purple],
+                textColors: [.white],
+                iconName: "person12",
+                font: .system(size: 14, weight: .bold)
+            )
+        ]
     )
     
     @State private var isSpinning = false
@@ -62,9 +142,39 @@ struct RapWheelScreen: View {
                     .shadow(radius: 8)
                     .padding(.bottom, 4)
                 
-                // Wheel
-                RapWheelView(viewModel: vm) {
-                    spinWheel()
+                // MARK: - Lucky Wheel with pointer + center SPIN
+                ZStack {
+                    LuckyWheelView(viewModel: vm) { tappedIndex in
+                        // icon tapped
+                        print("Icon tapped at index: \(tappedIndex)")
+                    }
+                    .frame(width: 320, height: 320)
+                    
+                    // Fixed pointer at top
+                    VStack {
+                        Triangle()
+                            .fill(Color.orange)
+                            .frame(width: 36, height: 24)
+                            .shadow(radius: 4)
+                            .padding(.top, -10)
+                        Spacer()
+                    }
+                    .frame(width: 320, height: 320)
+                    
+                    // Center SPIN button
+                    Button(action: spinWheel) {
+                        Text("SPIN")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(20)
+                            .background(
+                                Circle()
+                                    .fill(Color.orange)
+                                    .shadow(radius: 8)
+                            )
+                    }
+                    .disabled(isSpinning)
+                    .opacity(isSpinning ? 0.6 : 1.0)
                 }
                 
                 // Multipliers row
@@ -103,24 +213,36 @@ struct RapWheelScreen: View {
             }
         }
         .onAppear {
+            // Config same as Android defaults
+            vm.rotationDirection = .clockwise
+            vm.rotateSpeed = .normal
+            vm.rotateSpeedMultiplier = 1.0
+            
+            vm.onRotationComplete = { item in
+                // you can show person name instead of index
+                resultText = "Landed on \(item.text)"
+            }
+            
             // Auto-spin on load to index 1
             DispatchQueue.main.async {
-                currentTargetIndex = 1           // index you want on first load
+                currentTargetIndex = 1
                 spinWheel()
             }
         }
     }
     
+    // MARK: - Spin logic (uses LuckyWheelViewModel)
     private func spinWheel() {
         guard !isSpinning else { return }
         isSpinning = true
         
-        // 👉 currentTargetIndex can be set before calling this (fixed or random)
-        vm.spin(to: currentTargetIndex, duration: 3.0)
+        vm.rotateTime = 3.0                        // seconds
+        vm.rotateToTarget(currentTargetIndex)      // uses Android-like math
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + vm.rotateTime) {
             isSpinning = false
-            resultText = "Landed on index \(currentTargetIndex + 1)"
+            // If you want index-based text instead of item.text:
+            // resultText = "Landed on index \(currentTargetIndex + 1)"
         }
     }
     

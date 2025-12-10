@@ -10,7 +10,9 @@ import SwiftUI
 @main
 struct RapWheelApp: App {
     var body: some Scene {
+        
         WindowGroup {
+//             RapWheelScreen()   // 👈 starts from your full game screen
             let vm = RapWheelViewModel(segments: [
             "person1", "person2", "person3", "person4",
             "person5", "person6", "person7", "person8",

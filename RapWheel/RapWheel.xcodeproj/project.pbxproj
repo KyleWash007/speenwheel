@@ -13,6 +13,9 @@
 		A34781082EE104F500A7113C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34781022EE104F500A7113C /* ContentView.swift */; };
 		A34781092EE104F500A7113C /* RapWheelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34781032EE104F500A7113C /* RapWheelApp.swift */; };
 		A347810A2EE104F600A7113C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A34781012EE104F500A7113C /* Assets.xcassets */; };
+		A3CBF95A2EE17FB000FB32B6 /* WheelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CBF9592EE17FB000FB32B6 /* WheelItem.swift */; };
+		A3CBF95C2EE17FEB00FB32B6 /* WheelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CBF95B2EE17FEB00FB32B6 /* WheelViewModel.swift */; };
+		A3CBF95E2EE1800500FB32B6 /* LuckyWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CBF95D2EE1800500FB32B6 /* LuckyWheelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		A34781012EE104F500A7113C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A34781022EE104F500A7113C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A34781032EE104F500A7113C /* RapWheelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RapWheelApp.swift; sourceTree = "<group>"; };
+		A3CBF9592EE17FB000FB32B6 /* WheelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelItem.swift; sourceTree = "<group>"; };
+		A3CBF95B2EE17FEB00FB32B6 /* WheelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelViewModel.swift; sourceTree = "<group>"; };
+		A3CBF95D2EE1800500FB32B6 /* LuckyWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuckyWheelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,7 @@
 		A34780FA2EE104F500A7113C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A3CBF9592EE17FB000FB32B6 /* WheelItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -62,6 +69,7 @@
 		A34780FD2EE104F500A7113C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A3CBF95D2EE1800500FB32B6 /* LuckyWheelView.swift */,
 				A34780FB2EE104F500A7113C /* RapWheelScreen.swift */,
 				A34780FC2EE104F500A7113C /* RapWheelView.swift */,
 			);
@@ -71,6 +79,7 @@
 		A34780FF2EE104F500A7113C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A3CBF95B2EE17FEB00FB32B6 /* WheelViewModel.swift */,
 				A34780FE2EE104F500A7113C /* RapWheelViewModel.swift */,
 			);
 			path = ViewModel;
@@ -170,10 +179,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A34781052EE104F500A7113C /* RapWheelScreen.swift in Sources */,
+				A3CBF95A2EE17FB000FB32B6 /* WheelItem.swift in Sources */,
 				A34781062EE104F500A7113C /* RapWheelView.swift in Sources */,
 				A34781072EE104F500A7113C /* RapWheelViewModel.swift in Sources */,
+				A3CBF95C2EE17FEB00FB32B6 /* WheelViewModel.swift in Sources */,
 				A34781082EE104F500A7113C /* ContentView.swift in Sources */,
 				A34781092EE104F500A7113C /* RapWheelApp.swift in Sources */,
+				A3CBF95E2EE1800500FB32B6 /* LuckyWheelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +318,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UAEU5N39XX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -333,6 +346,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UAEU5N39XX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
